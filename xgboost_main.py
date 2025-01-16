@@ -103,7 +103,7 @@ def train_xgboost_model(training_features_xgboost_dir_path, validation_features_
     conf_matrix = confusion_matrix(encoded_true_labels, validation_song_predictions_list)
 
     # Save results to a text file
-    current_date = datetime.now().strftime('%Y-%m-%d %hh-%mm')
+    current_date = datetime.now().timestamp()
     report_filename = f'raport_clasificare_xgboost_{current_date}.txt'
     with open(report_filename, 'w') as report_file:
         report_file.write(f"Frame-Level Accuracy: {frame_accuracy:.2f}\n")

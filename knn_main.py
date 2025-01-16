@@ -86,7 +86,7 @@ def run_knn_model(training_data_path, validation_data_folder):
                 y_test.append(label)
                 test_song_names.append(test_file)
 
-    k = 2  
+    k = 1 
     test_encoded_labels = label_encoder.transform(y_test)
     test_probabilities = knn.predict_proba(X_test)
     top_k_predictions = []
@@ -109,7 +109,7 @@ def run_knn_model(training_data_path, validation_data_folder):
     class_report = classification_report(y_test, y_pred_decoded)
 
     # Save results to a text file
-    current_date = datetime.now().strftime('%Y-%m-%d %hh-%mm')
+    current_date = datetime.now().timestamp()
     report_filename = f'raport_clasificare_knn_{current_date}.txt'
     with open(report_filename, 'w') as report_file:
         report_file.write(f"Top-{k} Accuracy: {test_accuracy_top_k:.2f}\n")
