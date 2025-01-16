@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 from datetime import datetime
+import joblib
 
 def run_knn_model(training_data_path, validation_data_folder):
     labels = os.listdir(training_data_path)
@@ -119,3 +120,6 @@ def run_knn_model(training_data_path, validation_data_folder):
         report_file.write(class_report)
 
     print(f"Results saved to {report_filename}")
+
+    model_filename = f'xgboost_classifier_{test_accuracy_top_k:.2f}.pkl'
+    joblib.dump(knn, model_filename)
