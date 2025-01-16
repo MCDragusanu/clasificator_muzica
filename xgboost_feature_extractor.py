@@ -92,16 +92,7 @@ import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def extract_features_from_genre_directory(label):
-    """
-    Extracts features from all .mp3 files in a directory corresponding to a specific genre.
-    
-    Args:
-        label (str): Path to the directory containing the .wav files.
-        
-    Returns:
-        dict: A dictionary mapping song names to their corresponding DataFrames of features.
-        str: The genre label (directory name).
-    """
+  
     if not os.path.exists(label):
         print(f"No such directory found: {label}")
         return None
@@ -116,7 +107,7 @@ def extract_features_from_genre_directory(label):
         return None, label
 
     song_feature_map = {}
-    max_workers=4
+    max_workers= 16
     # Use ThreadPoolExecutor for parallel processing
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # Map file processing tasks
